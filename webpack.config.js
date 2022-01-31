@@ -7,7 +7,8 @@ const env = process.env.NODE_ENV || "development";
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, "front", "index", "index.tsx"),
+    index: path.resolve(__dirname, "front", "pages", "index", "index.tsx"),
+    admin: path.resolve(__dirname, "front", "pages", "admin", "index.tsx"),
   },
   output: {
     path: path.resolve(__dirname, "static"),
@@ -32,26 +33,35 @@ module.exports = {
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
-      }
+      },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
     alias: {
       "@": path.resolve(__dirname, "front"),
-    }
+    },
   },
   plugins: [
+    // HTML出力設定
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "front", "index", "index.html"),
-      filename: path.resolve(__dirname, "template", "common", "index.html"),
+      template: path.resolve(__dirname, "front", "pages", "index", "index.html"),
+      filename: path.resolve(__dirname, "template", "index", "index.html"),
       inject: "body",
-      chunks: ["main"],
-      hash: true
+      chunks: ["index"],
+      hash: true,
     }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "front", "pages", "admin", "index.html"),
+      filename: path.resolve(__dirname, "template", "admin", "index.html"),
+      inject: "body",
+      chunks: ["admin"],
+      hash: true,
+    }),
+    // CSS出力設定
     new MiniCssExtractPlugin({
-      filename: "css/[name].css"
-    })
+      filename: "css/[name].css",
+    }),
   ],
   optimization: {
     minimizer: [
@@ -60,11 +70,11 @@ module.exports = {
           // console.logの出力削除
           compress: {
             drop_console: true,
-          }
-        }
+          },
+        },
       }),
       new CssMinimizerPlugin(),
-    ]
+    ],
   },
   performance: {
     // build後のサイズに関する警告を800KB以内は表示させない

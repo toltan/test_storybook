@@ -1,9 +1,13 @@
+const path = require("path");
+
 module.exports = {
   env: {
     browser: true,
-    node: true
+    node: true,
+    jest: true,
   },
-  extends: [ // 上から順番に適用され、どんどん上書きされるため優先度の高いものは一番下に指定する
+  extends: [
+    // 上から順番に適用され、どんどん上書きされるため優先度の高いものは一番下に指定する
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
@@ -19,6 +23,7 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
+    semi: ["error", "always"],
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/no-var-requires": "off",
@@ -27,6 +32,26 @@ module.exports = {
     "react/prop-types": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
+    "react/jsx-no-undef": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        htmlWhitespaceSensitivity: "ignore",
+        singleQuote: false,
+      },
+    ],
+  },
+  globals: {
+    React: true,
+    ReactDOM: true,
+  },
+  // import時にエイリアスでエラーを出力しないように設定
+  settings: {
+    "import/resolver": {
+      webpack: {
+        config: path.join(__dirname, "./webpack.config.js"),
+      },
+    },
   },
 };

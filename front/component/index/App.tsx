@@ -8,7 +8,7 @@ const App: React.FC = () => {
       <p>test</p>
       <p>test</p>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
