@@ -9,6 +9,7 @@ module.exports = {
   entry: {
     index: path.resolve(__dirname, "front", "pages", "index", "index.tsx"),
     admin: path.resolve(__dirname, "front", "pages", "admin", "index.tsx"),
+    story: path.resolve(__dirname, "front", "pages", "story", "index.tsx"),
   },
   output: {
     path: path.resolve(__dirname, "static"),
@@ -45,17 +46,42 @@ module.exports = {
   plugins: [
     // HTML出力設定
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "front", "pages", "index", "index.html"),
+      template: path.resolve(
+        __dirname,
+        "front",
+        "pages",
+        "index",
+        "index.html",
+      ),
       filename: path.resolve(__dirname, "template", "index", "index.html"),
       inject: "body",
       chunks: ["index"],
       hash: true,
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "front", "pages", "admin", "index.html"),
+      template: path.resolve(
+        __dirname,
+        "front",
+        "pages",
+        "admin",
+        "index.html",
+      ),
       filename: path.resolve(__dirname, "template", "admin", "index.html"),
       inject: "body",
       chunks: ["admin"],
+      hash: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(
+        __dirname,
+        "front",
+        "pages",
+        "story",
+        "index.html",
+      ),
+      filename: path.resolve(__dirname, "template", "story", "index.html"),
+      inject: "body",
+      chunks: ["story"],
       hash: true,
     }),
     // CSS出力設定
@@ -73,6 +99,7 @@ module.exports = {
           },
         },
       }),
+      // CSSのminify化
       new CssMinimizerPlugin(),
     ],
   },

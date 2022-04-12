@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "@/component/index/App";
+import IndexPage from "@/component/index/pages/IndexPage";
 import "@/css/index.css";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<IndexPage />, document.getElementById("root"));

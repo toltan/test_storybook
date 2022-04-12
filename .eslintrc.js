@@ -42,10 +42,6 @@ module.exports = {
       },
     ],
   },
-  globals: {
-    React: true,
-    ReactDOM: true,
-  },
   // import時にエイリアスでエラーを出力しないように設定
   settings: {
     "import/resolver": {

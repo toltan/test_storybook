@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import AdminMenu from "@/component/admin/AdminMenu";
+import AdminPage from "@/component/admin/pages/AdminPage";
 import "@/css/index.css";
 
-ReactDOM.render(<AdminMenu />, document.getElementById("admin"));
+ReactDOM.render(<AdminPage />, document.getElementById("admin"));
