@@ -10,6 +10,7 @@ const Task: React.FC<TaskInterface> = memo(({ id, message }) => {
     <div className="list-item">
       {`id: ${id}`},&nbsp;
       {`message: ${message}`}
+      <input type="text" style={{ background: "red" }} />
     </div>
   );
 });
